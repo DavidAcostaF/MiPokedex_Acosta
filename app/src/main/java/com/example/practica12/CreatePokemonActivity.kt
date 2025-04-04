@@ -21,6 +21,7 @@ import com.cloudinary.utils.ObjectUtils
 import com.google.firebase.database.FirebaseDatabase
 import java.io.File
 import android.Manifest
+import android.widget.Toast
 
 class CreatePokemonActivity : AppCompatActivity() {
     val cloudName = "234"
@@ -71,30 +72,47 @@ class CreatePokemonActivity : AppCompatActivity() {
         }
 
         btnSavePokemon.setOnClickListener {
-            val number = pokemon_number.text.toString()
-            val name = pokemon_name.text.toString()
+            val number = pokemon_number.text.toString().trim()
+            val name = pokemon_name.text.toString().trim()
 
-            if (selectedImageUri != null) {
-                val imageUrl = uploadImageToCloudinary(selectedImageUri!!, cloudinary)
-                val newPokemon = Pokemon(number, name, imageUrl)
-
-                pokemones.push().setValue(newPokemon)
-                    .addOnSuccessListener {
-                        Log.d("Firebase", "Pokemon guardado exitosamente")
-                    }
-                    .addOnFailureListener { exception ->
-                        Log.e("Firebase", "Error al guardar el Pokémon", exception)
-                    }
-            } else {
-                Log.e("CreatePokemonActivity", "No se seleccionó ninguna imagen.")
+            if (number.isEmpty()) {
+                Log.e("Validación", "El número del Pokémon es requerido.")
+                pokemon_number.error = "Requerido"
+                Toast.makeText(this, "El número del Pokémon es necesario", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            if (name.isEmpty()) {
+                Log.e("Validación", "El nombre del Pokémon es requerido.")
+                pokemon_name.error = "Requerido"
+                Toast.makeText(this, "El nombre del Pokémon es necesario", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (selectedImageUri == null) {
+                Log.e("Validación", "La imagen del Pokémon es requerida.")
+                Toast.makeText(this, "La imagen del Pokémon es necesaria", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Si todo está correcto, continuar
+            val imageUrl = uploadImageToCloudinary(selectedImageUri!!, cloudinary)
+            val newPokemon = Pokemon(number, name, imageUrl)
+
+            pokemones.push().setValue(newPokemon)
+                .addOnSuccessListener {
+                    Log.d("Firebase", "Pokemon guardado exitosamente")
+                }
+                .addOnFailureListener { exception ->
+                    Log.e("Firebase", "Error al guardar el Pokémon", exception)
+                }
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }
 
-    fun checkStoragePermission() {
+        fun checkStoragePermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_MEDIA_IMAGES), 1)
         }
