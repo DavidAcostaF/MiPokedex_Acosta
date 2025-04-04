@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:id="@+id/main"
+
+    >
+
+    <!-- Imagen del Pokémon -->
+    <ImageView
+        android:id="@+id/imgPokemon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@android:drawable/ic_menu_gallery"
+        android:scaleType="centerCrop"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Imagen del Pokémon"/>
+
+    <!-- Botón para seleccionar la imagen -->
+    <Button
+        android:id="@+id/btnSelectImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Imagen"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/colorPrimary"
+        />
+
+    <!-- Campo para ingresar el número del Pokémon -->
+    <EditText
+        android:id="@+id/etPokemonNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Número del Pokémon"
+        android:layout_marginTop="16dp"
+        android:padding="12dp"
+        android:inputType="number"
+        android:background="@android:drawable/edit_text"/>
+
+    <!-- Campo para ingresar el nombre del Pokémon -->
+    <EditText
+        android:id="@+id/etPokemonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre del Pokémon"
+        android:layout_marginTop="16dp"
+        android:padding="12dp"
+        android:background="@android:drawable/edit_text"
+        android:inputType="text"/>
+
+    <!-- Botón para guardar el Pokémon -->
+    <Button
+        android:id="@+id/btnSavePokemon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar Pokémon"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/colorPrimary"
+        />
+</LinearLayout>

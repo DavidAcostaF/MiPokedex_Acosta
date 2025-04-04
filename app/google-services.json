@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "802793094280",
+    "project_id": "pokemon-ff997",
+    "storage_bucket": "pokemon-ff997.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802793094280:android:b218294a4afe96af13333d",
+        "android_client_info": {
+          "package_name": "com.example.practica12"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq52sVmEl9QDmXzNZIrMsy9c0QMg678wc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
